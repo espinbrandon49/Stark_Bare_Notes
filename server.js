@@ -36,7 +36,7 @@ app.get('/api/notes', (req, res) => {
   //msg 2: as a json format for the index.js? 
   res.json(notes)
 
-  console.info(`${req.method} request received to get reviews`)
+  console.info(`${req.method} request received to get notes`)
 })
 
 //POST /api/notes`
@@ -84,35 +84,29 @@ app.post('/api/notes', (req, res) => {
             : console.info('Successfully added a new note!')
         )
       }
-    })
+    });
+
+    // Update notes list dynamically, How?
+    const response = {
+      status: 'success',
+      body: newNote,
+    }
+
+    console.log(response);
+    res.json(response);
+
   } else {
     //not really necessary because the save note icon is shown if text/title is present
     res.json('Error in posting review')
   }
-
 })
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 // Binds and listens for connections on PORT 3001
 app.listen(PORT, () =>
   console.log(`App listening at http://localhost:${PORT}`)
 )
+
+/**
+ * Delete notes
+ * Review student (my) comments for accuracy
+ */
