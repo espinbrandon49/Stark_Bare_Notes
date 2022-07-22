@@ -94,7 +94,6 @@ app.post('/api/notes', (req, res) => {
 
     console.log(response);
     res.json(response);
-
   } else {
     //not really necessary because the save note icon is shown if text/title is present
     res.json('Error in posting review')
