@@ -102,8 +102,29 @@ app.post('/api/notes', (req, res) => {
 //* `DELETE /api/notes/:id` should receive a query parameter that contains the id of a note to delete. To delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
 
 app.delete('/api/notes/:id', (req, res) => {
-  console.info(`${req.method} request received to delete a note`)
-  res.send(`${req.method} request received to delete a note`)
+  console.info(`${req.method} request1 received to delete a note`)
+  //const deleteNote = JSON.parse(req)
+  console.log(req)
+  //console.log(res)
+
+  const response = notes.map(note =>{
+    if (deleteNote == note.id) {
+      console.log(deleteNote)
+      return note.id
+    } else {
+      console.log(deleteNote)
+    }
+  })
+
+ res.send(response)
+
+//  const response = {
+//   status: 'deleted',
+//   body: newNote,
+// }
+
+// console.log(response);
+// res.json(response);
 })
 
 // Binds and listens for connections on PORT 3001
@@ -112,8 +133,6 @@ app.listen(PORT, () =>
 )
 
 /**
- * WHEN I click on an existing note in the list in the left-hand column
-THEN that note appears in the right-hand column
  * Delete notes
  * Review student (my) comments for accuracy
  */
