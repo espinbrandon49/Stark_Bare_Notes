@@ -1,6 +1,7 @@
 const express = require('express')
 const path = require('path')
 const fs = require('fs')
+const uuid = require('./helpers/uuid')
 
 const PORT = 3001
 
@@ -15,10 +16,15 @@ app.use(express.urlencoded({ extended: true }))
 // access everything in the 'public folder'
 app.use(express.static('public'))
 
-// access/transfer? the index file to the internet (through PORT?)
+// create HTML GET route to return index.html file from public
 app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, './public/index.html'))
 )
+
+// create HTML GET route  return the `notes.html` file
+app.get('/notes', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/notes.html'))
+})
 
 
 
