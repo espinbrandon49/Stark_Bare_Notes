@@ -16,8 +16,8 @@ app.use(express.urlencoded({ extended: true }))
 app.use(express.static('public'))
 
 // access/transfer? the index file to the internet (through PORT?)
-app.get('/', (req, res) => 
-  res.send
+app.get('/', (req, res) =>
+  res.sendFile(path.join(__dirname, './public/index.html'))
 )
 
 
