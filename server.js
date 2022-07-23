@@ -3,15 +3,13 @@ const path = require('path')
 const fs = require('fs')
 let notes = require('./db/db.json')
 const uuid = require('./helpers/uuid')
+const { notDeepStrictEqual } = require('assert')
 
 const PORT = process.env.PORT || 3001
 
-// npm package is a web framework for node
 const app = express()
 
-// server equipped to read json format
 app.use(express.json())
-// server equipped to read urls
 app.use(express.urlencoded({ extended: true }))
 
 // access everything in the 'public folder'
@@ -78,9 +76,9 @@ app.post('/api/notes', (req, res) => {
           './db/db.json',
           JSON.stringify(parsedNotes, null, 4),
           (writeErr) =>
-          writeErr
-            ? console.error(writeErr)
-            : console.info('Successfully added a new note!')
+            writeErr
+              ? console.error(writeErr)
+              : console.info('Successfully added a new note!')
         )
       }
     });
@@ -101,30 +99,27 @@ app.post('/api/notes', (req, res) => {
 
 //* `DELETE /api/notes/:id` should receive a query parameter that contains the id of a note to delete. To delete a note, you'll need to read all notes from the `db.json` file, remove the note with the given `id` property, and then rewrite the notes to the `db.json` file.
 
-app.delete('/api/notes/:id', (req, res) => {
-  console.info(`${req.method} request1 received to delete a note`)
-  //const deleteNote = JSON.parse(req)
-  console.log(req)
-  //console.log(res)
-
-  const response = notes.map(note =>{
-    if (deleteNote == note.id) {
-      console.log(deleteNote)
-      return note.id
-    } else {
-      console.log(deleteNote)
+app.delete('/api/notes/:id', async (req, res) => {
+  console.log(req.params.id)
+  const deleteId = req.params.id
+  console.info(`${req.method} request received to delete a note`)
+  await notes.map((note, index) => {
+    console.log(note.id, index)
+    if (deleteId == note.id) {
+      notes.splice(index, 1)
     }
   })
+  //res.json(notes)
+  fs.writeFile('./db/db.json', JSON.stringify(notes), (err) => {
+    if (err) throw err;
+    res.json(notes)
+  })
+  // const filteredNotes = notes.filter(note => note.id != deleteId)
+  // fs.writeFile('./db/db.json', JSON.stringify(filteredNotes), (err) => {
+  //   if (err) throw err;
+  //   res.json(notes)
+  // })
 
- res.send(response)
-
-//  const response = {
-//   status: 'deleted',
-//   body: newNote,
-// }
-
-// console.log(response);
-// res.json(response);
 })
 
 // Binds and listens for connections on PORT 3001
