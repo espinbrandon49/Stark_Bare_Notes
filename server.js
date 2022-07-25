@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-// access everything in the 'public folder'
+// access the front-end files
 app.use(express.static('public'))
 
 // create HTML GET route to return index.html file from public
@@ -19,12 +19,13 @@ app.get('/', (req, res) =>
   res.sendFile(path.join(__dirname, './public/index.html'))
 )
 
-// create HTML GET route  return the `notes.html` file
+// create HTML GET route to return the `notes.html` file
 app.get('/notes', (req, res) => {
   res.sendFile(path.join(__dirname, './public/notes.html'))
 })
 
-// 'GET /api/notes` should read the `db.json` file and return all saved notes as JSON'.
+//GET NOTES
+// create GET route to read the `db.json` file and return saved notes as JSON
 app.get('/api/notes', (req, res) => {
   // send a message to the client
 
@@ -37,35 +38,38 @@ app.get('/api/notes', (req, res) => {
   console.info(`${req.method} request received to get notes`)
 })
 
+//POST A NOTE
 app.post('/api/notes', (req, res) => {
   //1) log that a post request (new note) was received
   console.info(`${req.method} request received to add a new note`)
 
-  //2) save on the request body 
-  //Destructure assignment for the items in the req.body
+  //2) save the note on the request body 
+    //Destructure assignment for the items in the req.body
   const { title, text } = req.body;
 
-  // If all the parameters are present
+    //If all the parameters are present
   if (title && text) {
-    //variable for the new note(object) I am saving
+    //variable for the new note
     const newNote = {
       title,
       text,
       id: uuid(),
     }
-   
-    fs.readFile('./db/db.json', 'utf8', (err, data) => {
+
+  //3) Add new note to the db.json file
+    //retrieve the current notes file
+  fs.readFile('./db/db.json', 'utf8', (err, data) => {
+      //if error in retrieval
       if (err) {
         console.error(err)
       } else {
         //convert string into JSON object
         const parsedNotes = JSON.parse(data)
-
-    //3) Add new note to the db.json file
+        //adds the new note
         parsedNotes.push(newNote)
+        //saves the object with the new note as the current notes
         notes = parsedNotes
-
-    //4) return the new note to the client
+    //rewrite the notes file with the new note added
         fs.writeFile(
           './db/db.json',
           JSON.stringify(parsedNotes, null, 4),
@@ -77,11 +81,11 @@ app.post('/api/notes', (req, res) => {
       }
     });
 
+//4) return the new note to the client
     const response = {
       status: 'success',
       body: newNote,
     }
-    // Responds with new note to render
     res.json(response);
   } else {
     //throws err if the note did not post
@@ -89,7 +93,7 @@ app.post('/api/notes', (req, res) => {
   }
 })
 
-//* DELETE 
+//* DELETE A NOTE
 app.delete('/api/notes/:id', async (req, res) => {
   //defines target to delete
   const deleteId = req.params.id
@@ -109,7 +113,7 @@ app.delete('/api/notes/:id', async (req, res) => {
   })
 })
 
-// Binds and listens for connections on PORT 3001
+// Binds and listens for connections on PORT
 app.listen(PORT, () =>
   console.info(`App listening at http://localhost:${PORT}`)
 )
