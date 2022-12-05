@@ -5,7 +5,7 @@
 ## Description 
 A note-taking application to write and save notes so that you can can organize your thoughts and keep track of tasks you need to complete. 
 
-This application uses:
+### Tools
  - Frontend: HTML, Bootstrap, CSS, JavaScript
  - Backend: NodeJS, Express.js 
  - Database:  JSON
@@ -13,18 +13,23 @@ This application uses:
 * Deployed Link: [https://stark-taiga-57338.herokuapp.com/](https://stark-taiga-57338.herokuapp.com/)
 * [GitHub repository](https://github.com/espinbrandon49/stark_bare_notes)
 
-### Tools
-JavaScript, HTML, CSS, Express.js, Bootstrap, 
-Node.js:  File System module,
-Heroku, Git, GitHub
-
 ## Table of Contents 
-  * [Installation](#installation)
   * [Usage](#usage)
+  * [Demo Video](#demo)
+  * [Installation](#installation)
   * [License](#license)
   * [Contributing](#contributing)
   * [Collaboration](#collaboration)
   * [Questions](#questions)
+
+  ## Usage 
+* Enter a new note title and the note  text, then a Save icon appears in the navigation at the top of the page
+* The new note is saved and appears in the left-hand column with the other existing notes
+* Click on an existing note title in the list in the left-hand column and that note appears in the right-hand column in full
+* Click on the Write icon in the navigation at the top of the page to return to enter a new note title and the note’s text in the right-hand column
+
+## Demo
+ - ![demo video](./Assets/usageDemo.gif)
   
 ## Installation
 ### Browser
@@ -42,14 +47,6 @@ git clone git@github.com:espinbrandon49/stark_bare_notes.git
 ```bash
 npm install
 ```
-
-## Usage 
-* Enter a new note title and the note  text, then a Save icon appears in the navigation at the top of the page
-* The new note is saved and appears in the left-hand column with the other existing notes
-* Click on an existing note title in the list in the left-hand column and that note appears in the right-hand column in full
-* Click on the Write icon in the navigation at the top of the page to return to enter a new note title and the note’s text in the right-hand column
-
-![usage video](./Assets/usageDemo.gif)
 
 ## License 
 ### MIT License 
