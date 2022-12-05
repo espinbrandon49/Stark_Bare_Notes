@@ -3,16 +3,19 @@
 [![Contributor Covenant](https://img.shields.io/badge/Contributor%20Covenant-2.1-4baaaa.svg)](code_of_conduct.md)
 
 ## Description 
-A note-taking application to write and save notes so that you can can organize your thoughts and keep track of tasks you need to complete. This application uses an Express.js back end and saves/retrieve note data from a JSON file as a database.
+A note-taking application to write and save notes so that you can can organize your thoughts and keep track of tasks you need to complete. 
 
-The application’s front end was already created. My part was to build the back end, connect the two, and then deploy the entire application to Heroku.
+This application uses:
+ - Frontend: HTML, Bootstrap, CSS, JavaScript
+ - Backend: NodeJS, Express.js 
+ - Database:  JSON
 
 * Deployed Link: [https://stark-taiga-57338.herokuapp.com/](https://stark-taiga-57338.herokuapp.com/)
 * [GitHub repository](https://github.com/espinbrandon49/stark_bare_notes)
 
 ### Tools
 JavaScript, HTML, CSS, Express.js, Bootstrap, 
-Node.js:  File System module, Path module, 
+Node.js:  File System module,
 Heroku, Git, GitHub
 
 ## Table of Contents 
@@ -63,4 +66,4 @@ Jerome Chenette
 
 ## Questions 
 
-Contact me by [E-mail](mailto:portfoliolinkemail@gmail.com) or [GitHub](https://github.com/espinbrandon49)
+Contact me by [E-mail](mailto:espinbrandon49@gmail.com) or [GitHub](https://github.com/espinbrandon49)
