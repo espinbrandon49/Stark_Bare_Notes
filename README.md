@@ -10,8 +10,8 @@ A note-taking application to write and save notes so that you can can organize y
  - Backend: NodeJS, Express.js 
  - Database:  JSON
 
-* [Deployed Link](https://stark-taiga-57338.herokuapp.com/)
-* [GitHub repository](https://github.com/espinbrandon49/stark_bare_notes)
+### [Deployed Link](https://stark-taiga-57338.herokuapp.com/)
+### [GitHub repository](https://github.com/espinbrandon49/stark_bare_notes)
 
 ## Table of Contents 
   * [Usage](#usage)
